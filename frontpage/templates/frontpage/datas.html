@@ -1,0 +1,104 @@
+{% extends 'frontpage/query.html' %}
+{% block data_list %}
+
+  <main class="container" style="margin-top: 30px;">
+    <div class="col-md-11 offset-md-1">
+      <div class="col-md-12">
+        <h3 class="pb-3 mb-4 blog-post-title border-bottom">
+          {{ area }}： {{ date }}
+        </h3>
+        <div class="row">
+          {% if area == '中国' %}
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">地区</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">新增确诊</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">新增无症状</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">累计确诊</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">风险地区</span>
+            </div>
+          {% else %}
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">地区</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">新增确诊</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">累计确诊</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">累计治愈</span>
+            </div>
+            <div class="col-md-2">
+              <span style="font-size:20px; font-weight:bold">累计死亡</span>
+            </div>
+          {% endif %}
+        </div><hr>
+          <!--遍历主题实例，topics为视窗函数传入的上下文字典中的键名-->
+          {% for data in datas %}
+            <article class="blog-post">
+                <h4 class="blog-post-title">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <a href="#">{{ data }}</a>
+                    </div>
+                  {% if area == '中国' %}
+                    <div class="col-md-2">
+                      <a href="#">{{ data.newly }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.total }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.cure }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.dead }}</a>
+                    </div>
+                  {% else %}
+                    <div class="col-md-2">
+                      <a href="#">{{ data.newly }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.total }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.cure }}</a>
+                    </div>
+                    <div class="col-md-2">
+                      <a href="#">{{ data.dead }}</a>
+                    </div>
+                  {% endif %}
+                  {% if area == '中国' %}
+                    <div class=" col-md-2">
+                        <a href="{% url 'frontpage:china_change' data.id %}" class="btn btn-info"> 修 改 </a>
+                    </div>
+                  {% else %}
+                    <div class=" col-md-2">
+                        <a href="{% url 'frontpage:foreign_change' data.id %}" class="btn btn-info"> 修 改 </a>
+                    </div>
+                  {% endif %}
+                  </div>
+                </h4>
+              <hr>
+            </article>
+          {% empty %}  <!--如果循环为空的话-->
+            <li><h5>未查询到与条件相符的本地数据。</h5></li>
+          {% endfor %}  <!--结束循环-->
+      </div>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <p class="text-right"><a href="#">返回顶部</a></p>
+  </footer>
+
+{% endblock data_list %}

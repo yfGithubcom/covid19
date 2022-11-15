@@ -1,0 +1,17 @@
+{% extends 'frontpage/base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<span style="font-size:32px">数据修改：</span>
+<span style="font-size:24px">{{ foreign_data.country }} {{ foreign_data.date }}</span><hr>
+<form action="{% url 'frontpage:foreign_change' foreign_data.id %}" method='post' class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button name="提交" class="btn btn-primary">执行修改</button>
+    {% endbuttons %}
+</form>
+
+{% block data_list %}{% endblock data_list %}
+
+{% endblock content %}

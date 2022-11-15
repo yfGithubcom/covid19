@@ -1,0 +1,52 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Covid-19</title>
+    <!--pyecharts渲染页面所需的js文件-->
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-wordcloud.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/china.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/ResizeSensor.js"></script>
+    <link rel="stylesheet"  href="https://assets.pyecharts.org/assets/jquery-ui.css">
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+        <!--navbar-brand文本更大号点-->
+        <button class="btn btn-danger">
+          <a style="font-size:18px; color:rgb(255, 255, 255)" href="{% url 'frontpage:index' %}">数据可视化</a>
+        </button>
+        <!--div(division分隔)标签开启了导航栏的一个新区域(应用样式或行为规则时，是分区域的)。其定义的样式与行为会仅作用于该标签的内部。
+        这里设定了当屏幕或窗口太小时，从按钮中展开的导航栏的样式-->
+        <!--collapse navbar-collapse响应式折叠类-->
+        <div class="collapse navbar-collapse">
+            <!--ml-auto(margin-left-automatic自动设定左边空白的间距)-->
+            <ul class="navbar-nav ml-auto">
+                <!--判断客户是否已登录。每个模板都可以使用user变量，is_authenticated返回布尔值，以判断是否登录-->
+                {% if user.is_authenticated %}
+                    <button class="btn btn-info">
+                      <a style="font-size:18px; color:rgb(255, 255, 255)" href="{% url 'frontpage:query' %}">数据库管理</a>
+                    </button>
+                {% else %}
+                    <button class="btn btn-info">
+                        <a class="nav-link" href="http://127.0.0.1:8000/admin">登录</a>
+                    </button>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <!--main标签用于定义页面主体的最重要部分，container布局容器(两侧留白)，role(用于定义aria元素，主要是供残疾人使用)-->
+    <main class="container">
+        <!--content块用于添加页面的主体内容-->
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'frontpage/base.html' %}
+{% block content %}
+
+  <!--表单标签，其中action会告诉服务器将提交的数据发送到哪，提交方式为post(默认为get)-->
+  <form action="{% url 'frontpage:query' %}" class="container container-small" method="post">
+      <!--row用于将内部元素按一整行来布局，避免了2侧的留白-->
+      <div class="row">
+          <div class="col-md-3 offset-md-2">
+              <div class="row">
+                  <div class="col-md-6">  <!--appearance: none 去掉倒三角-->
+                      <select name="area" class="btn btn-info form-control" style="appearance: none">
+                        <option>中国</option>
+                        <option>全球</option>
+                      </select>
+                  </div>
+                  <div class="col-md-6">
+                      <select name="year" class="btn btn-info form-control" style="appearance: none">
+                        <option>2022</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-5">
+              <div class="row">
+                  <div class="col-md-4">
+                      <input type="text" name="month" class="form-control" style="text-align:center; width: 135px;" placeholder="月">
+                  </div>
+                  <div class="col-md-4">
+                      <input type="text" name="day" class="form-control" style="text-align:center; width: 135px;" placeholder="日">
+                  </div>
+                  <div class="col-md-2">
+                    <input type="submit" class="btn btn-primary btn-sm" style="font-size:18px;" value=" 按日期查询 ">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </form>
+
+{% block data_list %}{% endblock data_list %}
+
+{% endblock content %}

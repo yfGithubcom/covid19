@@ -1,0 +1,5 @@
+<!--import相当于在模板中导入函数-->
+{% import 'macro' as macro %}
+<!--载入生产环境所需的包(dependencies)，devDependencies则为开发环境所需的包-->
+{{ macro.render_chart_dependencies(chart) }}
+{{ macro.render_chart_content(chart) }}
