@@ -8,7 +8,7 @@ import pymysql
 from loguru import logger
 
 """
-    需求分析：
+    分析：
         1.数据源：https://voice.baidu.com/act/newpneumonia/newpneumonia/
           当日中国各省与全球各国家(Tab(table...))的：新增确诊，累计确诊，累计治愈，累计死亡表格
         2.selenium爬取该页面需用于可视化的数据，存入MySQL中(当日仅第一次运行爬虫时爬取)
@@ -31,7 +31,7 @@ def get_data():
     options.add_argument('user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.47"')
     options.add_argument('--disable-gpu')
     # 自动管理Chrome驱动
-    options.binary_location = r"C:\Users\14710\AppData\Local\Chromium\Application\Chromium.exe"
+    options.binary_location = r"C:\Users\Chromium\Application\Chromium.exe"
     # 注意：需下载与win11系统安装的Chrome浏览器版本相匹配的webdriver，Windows11目前使用Chrome驱动自动管理会报错
     # bro = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     bro = webdriver.Chrome('chromedriver.exe', options=options)
