@@ -85,9 +85,9 @@ DATABASES = {  # 将默认的数据库连接配置从sqlite3改为MySQL
         'ENGINE': 'django.db.backends.mysql',
         'NAME': '百度疫情',
         'USER': 'root',
-        'PASSWORD': 'root123',
+        'PASSWORD': 'root',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': ' ',
     }
 }
 
